@@ -10,7 +10,7 @@
 \usepackage[backend=bibtex,style=numeric]{biblatex}
 \usepackage[left=1.75in, right=1.75in, top=1in, bottom=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
-\usepackage{bm}
+% \usepackage{bm}
 \usepackage{MnSymbol}
 \usepackage{mathtools}
 \usepackage{tikz}
@@ -19,8 +19,20 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{appendix}
+\usepackage{minted}
+\usepackage{titlesec}
 
-\graphicspath{ {../images/} }
+\graphicspath{ {./code/images/} }
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 
 \newcommand{\ra}{\rightarrow}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
@@ -47,9 +59,13 @@
 
 This paper will focus on the task described by Project 3 of the Dynamics of Games offered by the Department of Mathematics at Imperial College.
 
-First, we will take a brief look at the game of Colonel Blotto described in TODO (specifically, the case of 5 armies and 3 battlefields) and form some predictions about the any equilibria TODO and/or possible dynamics the game may have. In section \ref{algorithm} we will then describe our customized implementation of the regret-matching algorithm from the Neller-Lancot paper, as well as other tools and utilities that are of use in analysis of iterated one-shot games. Section \ref{algo-theory} will describe the results of the Colonel Blotto game achieved by the algorithm, and
+First, we will take a brief look at the game of Colonel Blotto described in TODO (specifically, the case of 5 armies and 3 battlefields) and form some predictions about the any equilibria the game may have. In section \ref{algorithm} we will then describe our customized implementation of the regret-matching algorithm from the Neller-Lancot paper, as well as other tools and utilities that are of use in analysis of iterated one-shot games. Section \ref{algo-theory} will describe the results of the Colonel Blotto game achieved by the algorithm.
 
-\section{Colonel Blotto Game} \label{blotto game}
+\pagebreak
+
+\section{Colonel Blotto} \label{blotto game}
+
+\subsection{The Colonel Blotto Game}
 
 The Colonel Blotto game is a two-player, one-shot, zero-sum game revolving around the idea of two opposing players each having $a$ discrete armies and having to split them up to fight on $b$ different battlegrounds. Each battlegrounds is won by a player if and only if they have sent a larger force to that battleground, a draw if both players have sent the same number of armies, and a loss otherwise. The player who has won more battlegrounds wins the game, and the other loses. A draw is possible if neither player has won more battlegrounds than the other. The utility for a win, draw, and loss is 1, 0, and -1 respectively.
 
@@ -62,11 +78,11 @@ Analysis of this game is a tricky, for mainly for two reasons:
   \item Small cases which are feasable to analyse by hand are uninteresting. For example, with $a = 1, b = 2$, the payoff matrix is actually a 2x2 matrix of zeroes, as neither player can win. In fact for all cases of $b=2$ neither player can ever win.
 \end{enumerate}
 
-\subsection{Symmetric Colonel Blotto}
+\subsection{Symmetric Colonel Blotto} \label{sym-blotto}
 
 Note that the actions in any Colonel Blotto game are \textit{symmetric}. That is, all actions have corresponding actions such that the payoffs are equivalent. For example, $(a_1, a_2, a_3)$ has the same payoff against $(b_1, b_2, b_3)$ as $(a_2, a_1, a_3)$ has to $(b_2, b_1, b_3)$, and so forth.
 
-We may then first attempt to analyze a simpler, symmetric version of the Colonel Blotto game, called the \textit{symmetric} Colonel Blotto. Here, we group actions of the original Colonel Blotto game together by their permutative equivalences, e.g. an action $a_1 a_2 a_3 $ represents all of its possible permutations in the original Colonel Blotto game. We assume each permutation of an action is equally likely due to symmetry, therefore we can calculate the payoff matrix of the Symmetric Colonel Blotto game with 3 armies and 5 battlefields.
+We may then first attempt to analyze a simpler, symmetric version of the Colonel Blotto game, called the \textit{Symmetric} Colonel Blotto, and hope that the results translate to the original version. Here, we group actions of the original Colonel Blotto game together by their permutative equivalences, e.g. an action $a_1 a_2 a_3 $ represents all of its possible permutations in the original Colonel Blotto game. We assume each permutation of an action is equally likely due to symmetry, therefore we can calculate the payoff matrix of the Symmetric Colonel Blotto game with 3 armies and 5 battlefields.
 
 \begin{figure}[H]
   \renewcommand{\arraystretch}{1.75}
@@ -90,7 +106,7 @@ We may then first attempt to analyze a simpler, symmetric version of the Colonel
   \label{sym-blotto-full}
 \end{figure}
 
-Each element of the matrix is the expected payoff of any (uniform) random permutation of the row action against any (uniform) random permutation of the column action.
+Each element of the matrix is the expected payoff of any (uniform) random permutation of the row action against any (uniform) random permutation of the column action. In comparison to the 21x21 matrix of the (5, 3) instance of the original game, this 5x5 matrix is much simpler to analyze.
 
 \subsubsection{Nash Equilibria}
 
@@ -114,6 +130,8 @@ or equivlalently in terms of \textit{best responses}
 
 where $ \mathcal{BR}_A(y)  = \{ x^* \in \Delta \; | \; x^* \cdot A y \geq x \cdot A y \; \forall x \in \Delta  \} $.\\
 
+As we have a symmetric, zero-sum game here, we use only one payoff matrix $A$.
+
 Note that in the payoff matrix, the first two rows always perform worse than the bottom 3 rows, regardless of the column - i.e. actions \texttt{005} and \texttt{014} are dominated by the other actions. Hence no Nash Equilibria would involve those two actions, and we can consider the sub-matrix of the last 3 actions (with the payoffs normalized).
 
 \begin{align}
@@ -135,33 +153,503 @@ For the above matrix, there are 4 Nash Equilibria:
 
 To show that the above are indeed Nash Equilibria, we show that each $\hat{x}$ we and $\hat{y}$ are each others' best reponses.
 
+\begin{align}
+  \begin{split}
+    (1, 0, 0) A ( 1, 0, 0 )^T = 0 = \max_x \;  x \cdot A ( 1, 0, 0 )^T
+  \end{split}
+  \\
+  \begin{split}
+    (1, 0, 0) A (\tfrac{1}{2}, \tfrac{1}{2}, 0)^T = 0 = \max_x \;  x  \cdot A (\tfrac{1}{2}, \tfrac{1}{2}, 0)^T \\
+    (\tfrac{1}{2}, \tfrac{1}{2}, 0) A ( 1, 0, 0 )^T = 0 = \max_x \;  x  \cdot A ( 1, 0, 0 )^T
+  \end{split}
+  \\
+  \begin{split}
+    (\tfrac{1}{2}, \tfrac{1}{2}, 0) A (\tfrac{1}{2}, \tfrac{1}{2}, 0)^T = 0 = \max_x \;  x  \cdot A (\tfrac{1}{2}, \tfrac{1}{2}, 0)^T
+  \end{split}
+\end{align}
 
+Hence we may speculate that in the original Colonel Blotto game, there may be Nash Equilibria where each player has either one of the following mixed strategies:
+
+\begin{enumerate}
+  \item All permutations of \texttt{023} are equally likely with probability $1/6$, and all other actions have 0 probability (corresponding to $(1, 0, 0)$ of the symmetric version).
+  \item All permutations of \texttt{023} are equally likely with probability $1/12$, and all permutations of \texttt{113} are equally likely with probability $1/6$.
+\end{enumerate}
+
+We can also be confident that any equilibria  will not involve non-zero probabilities for any actions that are not permutations of \texttt{023} or \texttt{113}
+
+\pagebreak
+
+\section{Regret Minimalization}
+
+\subsection{Motivation}
+
+Consider an iterative series of plays of a \textit{one shot} game. Suppose the game has utility function $u$ and that there are $n_1$ actions $a_1, a_2 ... a_{ n_1 }$ for player I, and similarly $n_2$ actions $b_1, b_2 ... b_{ n_1 }$ for player II. Player I picks action $a_i$ and player II picks $b_j$. After the game, as both players are aware of the utility function, player I can calculate their utilities had they picked any other action $a_{i'}, i' \neq i$. If this alternative utility is greater than the utility actually achieved by playing then we can say that player I \textit{regrets} not having played $a_{i'}$ instead of $a_i$.
+
+\subsection{Regret}
+
+More concisely, we define the \textit{regret} of not having chosen an action the to be the difference in utilities of that action against the opposite player's already-chosen action, and the utility of the action that was chosen.
+
+\begin{align}
+  r(a, t) = u(a, b^t) - u(a^t, b^t)
+\end{align}
+
+Where $a$ is an action, $a^t$ and $b^t$ are the actions chosen by players I and II at time $t$. Positive regret can be interpreted as "I should have played that instead", negative regret as "I'm glad I didn't play that", and 0 regret as there being no change in outcome had that action been picked instead.
+
+\subsection{Regret Matching}
+
+This forms the basis of the regret-matching algorithm that we will extensively use in this paper - the idea that a player can select future moves by drawing from a probability distribution proportional to their all their \textit{positive} regrets (moves which they wish they had previously played).
+
+The basic \texttt{regret matching} algorithm can be described as follows:
+
+\begin{itemize}
+  \item Initialize the vector \texttt{regret\_sum} (of length equal to the number of actions) of regrets to 0.
+  \item After one iteration of the game, the player has picked action $a_i$, against the opponent's action $b$. The player calculates the regret of \textit{all} their actions as a vector, and adds it to their \texttt{regret\_sum}.
+  \item In order to pick the player's next action, they sample from the discrete probability distribution that is proportional to their positive regrets. For example, a \texttt{regret\_sum} of $(-1, 1, 2)$ would yield discrete probabilities of $(0, 1/3, 2/3)$. Note that the choice of only using positive regrets can be conceptualized as not wanting to pick actions that the player has negative regret i.e. is happy they never picked it.
+\end{itemize}
+
+\subsection{Minimal Regret Strategy is the average historical strategy} \label{avg-strat}
+
+However, probability distributions of actions at any time $t$ may be highly erratic and/or skewed. For instance, regrets of $(0, -1, 1)$ automatically imply that the third action is chosen with 100\% certainty the next game, despite their regrets being so close. In \ref{nash-rps} we will further illustrate that this issue can happen at any time in the game, not necessarily just at the first few iterations.
+
+The minimal regret strategy can instead be found in the average strategy across all iterations:
+
+\begin{align}
+  P(t) & = \frac{1}{t} \sum_{i=1}^{t + 1} p(i)
+\end{align}
+
+which is merely the mean of all the action probability distributions at each iteration of the game.
+
+To keep track of this, we add some modifications to the previously described algorithm in a few ways:
+
+\begin{itemize}
+  \item We keep track of the sum of all previous probability distributions by using a vector variable \texttt{strategy\_sum}, initialized to all 0s.
+  \item At every iteration when we compute a new probability distribution of actions, we add that to \texttt{strategy\_sum}.
+  \item At each iteration, the added probability distribution sums to 1, therefore the minimal regret strategy is the normalization of \texttt{strategy\_sum}.
+\end{itemize}
+
+
+For a simple but fully implemented example please refer to TODO for a complete walkthrough of a Java-style example of Rock Paper Scissors.
+
+\pagebreak
 
 \section{Implementation of Regret Minimalization Algorithm and Other Utilities} \label{algorithm}
 
-Blah blah
+\subsection{Differences to the original paper, design choices and extensibility}
+
+The underlying logic of the main algorithm described in the previous section and the original Neller-Lancot paper remain the same. However, plenty of changes have been made in order to facilitate more utilities and usages outside of the particular task stated in the project description of (paraphrasing) having 2 regret-matching players against each other on the (5,3) instance of Colonel Blotto. Great attention was paid to maximizing the usefulness of this code for more general cases of iterative one shot games.
+
+\subsection{Game Class}
+
+The \texttt{game} interface is for classes representing games, and holds two pieces of information:
+
+\begin{itemize}
+  \item The possible actions of each player. Called by \texttt{get\_actions} method.
+  \item The utility function, to calculate the utilities of each player given their moves. Called by \texttt{get\_utility} function.
+\end{itemize}
+
+All \texttt{game} classes are stateless with respect to any games played and do not keep any history whatsoever.
+
+% There are 3 different game classes, \texttt{SymmetricBlottoGame},  \texttt{ColonelBlottoGame}, and \texttt{RockPaperScissors}.
+% The former two are generic to any number of battlefields and armies, and are instantiated with two arguments - one for battlefields, and another for armies e.g. \texttt{ColonelBlottoGame 5, 3}.
+
+\subsection{Player Class}
+
+The \texttt{player} interface is for classes representing players/agents, and holds the following functionalities:
+
+\begin{itemize}
+  \item \texttt{initialize} is a method called to initialize the player with a specific \texttt{game}.
+  \item \texttt{get\_action} selects an action for the game.
+  \item \texttt{post\_play} informs the player of the outcome of a game so their history and/or strategy can be updated accordingly.
+  \item \texttt{get\_strategy} returns the player's current mixed strategy.
+  \item \texttt{get\_average\_strategy} returns the player's average strategy over their lifespan.
+\end{itemize}
+
+All player implementations are also subclasses of \texttt{OneShotPlayer}, which keeps track of the total number of games played, as well as cumulative and average utilities.
+
+There are two \texttt{player} classes, \texttt{FixedPlayer} and \texttt{RegretMinPlayer}. As one may deduce from the names the former is a player adhering to a fixed strategy - by default it is all actions equally, but the strategy can be changed simply by setting the player's \texttt{strategy} field. The latter is the implementation of the Regret Matching Algorithm described in the previous section, being very similiar to the Rock-Paper-Scissors example from the TODO paper, but 1.) not being directly coupled with any particular game and 2.) taking advantage of existing \texttt{numpy} features.
+
+\subsection{Trainer Class}
+
+The \texttt{trainer} is what glues everything together: given two \texttt{player} objects and an instantiated \texttt{game} object, we can run the iterative series of plays between both players.
+
+The most simple way to instantiate everything and run the algorithm is as follows:
+
+\begin{minted}{python}
+
+game = RockPaperScissorsGame()
+
+player_a = RegretMinPlayer()
+player_b = RegretMinPlayer()
+
+trainer = OneShotTrainer(player_a, player_b, game)
+
+trainer.train(1000)
+trainer.report()
+
+\end{minted}
+
+Other examples and usages may be found in the Appendix.
+
+\subsubsection{Graphs and Animations}
+
+Included in this class are also many utilities for plotting various graphs and animations to visualize strategies, average strategies, regrets, and convergence over time.
+
+\subsection{Testing the Implementation with Rock Paper Scissors}
+
+We gather some confidence that our implementation of the algorithm works by testing it with an already well-known game: Rock Paper Scissors.
+
+The \texttt{main} scripts used to generate all the results below can be found in the Appendix.
+
+\subsubsection{Finding best response against a fixed strategy}
+
+First, we check that Regret Matching player can successfully minimise regret against a player with a fixed strategy - specifically, the fixed pure strategy of only playing \textit{rock} (therefore, the Regret Matching player should have an average strategy converging to only \textit{paper}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{rps_fixed.png}
+  \caption{Regret Matching against a fixed pure Rock strategy}
+\end{figure}
+
+The regret matching player (Red / Player A) successfully identifies the best response is $(0, 1, 0)$ within a 1000 iterations.
+
+
+\subsubsection{Finding Nash Equilibrium via self-play} \label{nash-rps}
+
+We can now try Exercise 2.5 from TODO: having both players use regret matching against each other in the game of Rock Paper Scissors.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{rps_nash_1k.png}
+    \caption{1k iterations}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{rps_nash_100k.png}
+    \caption{100k iterations}
+  \end{subfigure}
+
+  \caption{Regret Matching player vs Regret Matching player in RPS}
+\end{figure}
+
+After 1000 iterations, we can see that the average strategies starts to look like the expected Nash Equilibrium. However, we can also see both strategies are still rather rough-looking and not quite there yet. After 100k iterations, the average strategies starts looking much smoother and closer to $(1/3, 1/3, 1/3)$.
+
+After the end of 100k iterations, both players report:
+
+\begin{minted}{text}
+Player A:
+Average Utility: -0.00043
+Cumulative Utility: -86
+Games Played: 200000
+Final Regrets: [245, 105, -92]
+
+Player B:
+Average Utility: 0.00043
+Cumulative Utility: 86
+Games Played: 200000
+Final Regrets: [-498, 163, 77]
+\end{minted}
+
+Note that both players' regrets are not remotely near being uniform across all the actions - player A is currently skewed towards picking \textit{rock} for the near future, whilst player B is biased towards \textit{paper}. This illustrates the idea that the per-iteration strategies are highly volatile and erratic from \ref{avg-strat}.
+
+Also note that the \texttt{Average Utility} is $\approx 0$ for both players - \textbf{an important characteristic of symmetric, zero-sum games is that any equilibria they have must have expected payoff of 0 for both players.}
+
+\subsubsection{Convergence of Strategies, Utilities}
+
+How do we know that a strategy has converged? In the Rock-Paper-Scissors, we \textit{assumed} that the Regret Matching algorithm was converging because we knew $(1/3, 1/3, 1/3)$ is a Nash Equilibrium. For games where we are unsure of their NE, this isn't good enough - if we didn't know the NE of RPS we would have had no way of knowing that the algorithm has converged, or that it wouldn't later diverge or converge to something else given more iterations.
+
+We need a way of visualizing the change of average strategy (and regrets, utilities, etc) with respect to \textit{time}, hence a few different methods were developed
+
+\paragraph{Plotting Average Strategy Deltas between Intervals of Iterations}
+
+We can calculate the differences in average strategy every \texttt{n} iterations and plot them on a graph, like the following:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{rps_deltas_100k.png}
+  \caption{Average Strategy Deltas Every 1000 iterations for RPS}
+\end{figure}
+
+\paragraph{Plotting Norm of Average Regret Vector}
+
+To achieve the minimum-regret set in equilibria, the average sum of positive regrets across all iterations must converge to a minimum.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{rps_regrets_100k.png}
+  \caption{Average Strategy Deltas Every 1000 iterations for RPS}
+\end{figure}
+
+\paragraph{Average Strategy Animations}
+
+For a more visually appealing approach, we can generate animations of how average strategy changes as the number of iterations increases. Links to GIFs of these animations will be provided in the Appendix.
 
 \section{Results of Algorithm} \label{results}
 
+\subsection{Symmetric Blotto Game}
+
+We run two-player Regret Matching on the Symmetric Blotto Game to test our predictions from \ref{sym-blotto}.
+
+Our first run yields the graph in \ref{fig:sym-blotto} (here, we include all 5 possible actions, so $(1, 0, 0)$ from \ref{sym-blotto} becomes $(0, 0, 1, 0, 0)$. Unsurprisingly, we get the both-player $(0, 0, 1, 0, 0)$ (henceforth called $NE_1$) strategy equilibrium quite easily.
+
+Running the same same algorithm multiple times (in this instance) always yields this same equilibrium. Is there any way to get the other equilibria as well?
+
+\subsubsection{Two-Player Regret Matching towards specific Equilibria}
+
+The first idea might be to \textit{"nudge"} both players' regrets (and therefore strategies) towards what we know/predict to be an equilibrium. To do this, we can manually set each players' \texttt{regret\_sum} fields prior to training to be strongly favoured towards that certain equilibrium. Here we use regrets of \texttt{[-10, -10, 10, 10, -10]} for both players. The results of this can be seen in the \ref{sym-nudge-plots}.
+
+Unfortunately, our idea does not quite seem to work. Even trying with some other starting regrets (and similar numbers of iterations), the two players either:
+
+\begin{itemize}
+  \item Converge to $(0, 0, 1, 0, 0)$
+  \item Do not converge but behave erratically/slows down/cycles around $(0, 0, 1/2, 1/2, 0)$
+\end{itemize}
+
+Convergence to the desired $(0, 0, 1/2, 1/2, 0)$ NE (now called $NE_2$) is achievable only via \textit{very} heavily skewing the initial regrets (to magnitudes of 1000+) and allowing for very large number of iterations (10-100k+ compared to the first NE's 1k). Compared to $NE_1$, even though the algorithm runs non-deterministically, it is able to achieve $NE_1$ most of the time with just 1k runs.
+
+\subsubsection{Evolutionary Stable Strategies of Symmetric Colonel Blotto}
+
+Recall the notions of \textit{Evolutionary Stable Strategies} for 1-player games. $\hat{x}$ is said to be an ESS if:
+
+\begin{align}
+  x \cdot A (\epsilon x + (1 - \epsilon) \hat{x}) < \hat{x} \cdot A (\epsilon x + (1 - \epsilon) \hat{x})
+\end{align}
+
+The intuition behind ESS is that if $\hat{x}$ experiences a small pertubation (e.g. a small portion of the population adopting the new strategy), then $\hat{x}$ will still be the preferable strategy for any individual to have against the pertubed entire population. In simpler terms, \textit{is $\hat{x}$ the uniquely optimal strategy against other strategies near itself?}
+
+\paragraph{2-Player Evolutionary Stable Strategies}
+
+We extend the concept of ESS to 2-player games in order to analyze the difficulty in converge of other equilibrium that aren't $NE_1$.
+
+We define the evolutionary stable strategies $\hat{x}, \; \hat{y}$ of a 2-player game to be:
+
+\begin{align}
+  x \cdot A (\epsilon y + (1 - \epsilon) \hat{y}) < \hat{x} \cdot A (\epsilon y + (1 - \epsilon) \hat{y}) \\
+  y \cdot B (\epsilon x + (1 - \epsilon) \hat{x}) < \hat{y} \cdot A (\epsilon x + (1 - \epsilon) \hat{x})
+\end{align}
+
+for $x \neq \hat{x}$ and $\epsilon > 0$ small enough.
+
+This can be interpreted as $\hat{x}$ still being the uniquely optimal strategy against a small change in $\hat{y}$, and vice versa. If an NE is not an ESS, then a small perturbation in one player's strategy will also cause the other player to move away from the NE - and given our algorithm works via lots of random perturbations, this would explain the behaviour seen in the previous section.
+
+\paragraph{ESS of the Symmetric Blotto Game}
+
+Predictably, $NE_1$ is an ESS. Proof:
+
+\begin{align}
+  \begin{split}
+    A (\epsilon y + (1 - \epsilon)
+    \begin{bmatrix}
+      1 \\
+      0 \\
+      0
+    \end{bmatrix}
+      ) =
+    \begin{bmatrix}
+      \epsilon y_3 \\
+      -\epsilon y_3 \\
+      - 1 + \epsilon - \epsilon (y_1 - y_2)
+    \end{bmatrix} \\
+    \argmax_{x \in \Delta} x \cdot
+    \begin{bmatrix}
+      \epsilon y_3 \\
+      -\epsilon y_3 \\
+      - 1 + \epsilon - \epsilon (y_1 - y_2)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 \\
+      0 \\
+      0
+    \end{bmatrix}
+  \end{split}
+\end{align}
+
+$NE_2$ is not an ESS:
+
+\begin{align}
+  \begin{split}
+    A (\epsilon y + (1 - \epsilon)
+    \begin{bmatrix}
+      1/2 \\
+      1/2 \\
+      0
+    \end{bmatrix}
+      ) =
+    \begin{bmatrix}
+      \epsilon y_3 \\
+      -\epsilon y_3 \\
+      - \epsilon (y_1 - y_2)
+    \end{bmatrix} \\
+    \argmax_{x \in \Delta} x \cdot
+    \begin{bmatrix}
+      \epsilon y_3 \\
+      -\epsilon y_3 \\
+      - \epsilon (y_1 - y_2)
+    \end{bmatrix}
+    \neq
+    \begin{bmatrix}
+      1/2 \\
+      1/2 \\
+      0
+    \end{bmatrix}
+  \end{split}
+\end{align}
+
+And from the last line of our $NE_1$ proof we also have
+
+\begin{align}
+  \begin{split}
+    \argmax_{x \in \Delta} x \cdot
+    \begin{bmatrix}
+      \epsilon y_3 \\
+      -\epsilon y_3 \\
+      - 1 + \epsilon - \epsilon (y_1 - y_2)
+    \end{bmatrix}
+    \neq
+    \begin{bmatrix}
+      1/2 \\
+      1/2 \\
+      0
+    \end{bmatrix}
+  \end{split}
+\end{align}
+
+Therefore only $NE_1$ is our only ESS - which explains why our algorithm seems to have great preference to converging to that equilibrium!
+
+\subsection{Original Colonel Blotto Game}
+
+Now, we \textit{finally} get around to running the two-player regret matching algorithm with the original Colonel Blotto Game. Core, important graphs and data will be shown here whilst supplementary graphs can be found in the Appendix.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{blotto_10k.png}
+    \caption{10k iterations}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{blotto_100k.png}
+    \caption{100k iterations}
+  \end{subfigure}
+
+  \caption{Regret Matching player vs Regret Matching player in Colonel Blotto}
+\end{figure}
+
+On first look, it appears as though our algorithms are not converging. However, the convergence graphs generated seem to show a good convergence rate - and running it for 10 million iterations (see appendix) gets similar results.
+
+These results are neither of the equilibria we expected from our predictions in \ref{sym-blotto}. However, using similar "nudging" techniques from previous sections, we can try to achieve those two equilibria.
+
+\subsubsection{Nudging Colonel Blotto towards predicted Equilibria}
+
+Using initial regret weights of 1000 for permutations of \texttt{023} and -100 for all other actions (which is small relative to 100k iterations), we successfully achieve \textit{bot} NE we predicted. Refer to \ref{appendix:blotto-nudge-1} for graphs. Therefore, our original predictions from the symmetric version were indeed correct.
+
+\subsubsection{Asymmetric probabilities between symmetric actions}
+
+The remaining question is how are there asymmetric probabilities between symmetric (permutative) actions? As we saw, these asymmetric results are indeed most likely NE (due to their decreasing regrets and deltas between strategies).
+
+Whilst not a conclusive proof by any means, we may look once again towards a familiar friend: Rock Paper Scissors.
+
+
+\pagebreak
+\section{Arguments behind the Algorithm} \label{algo-theory}
+
 Blah blah
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.7\linewidth]{PCA.jpg}
-%   \caption{Accuracy of PCA}
-% \end{figure}
+\pagebreak
+\appendix
+\appendixpage
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.7\linewidth]{wPCA.jpg}
-%   \caption{Accuracy of Whitened PCA}
-% \end{figure}
+\section{Graphs and Plots}
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.7\linewidth]{LDA.jpg}
-%   \caption{Accuracy of LDA}
-% \end{figure}
+\subsection{Symmetric Blotto}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{sym_blotto_1k.png}
+  \caption{Symmetric Blotto Convergence to NE after 1k iterations}
+  \label{fig:sym-blotto}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{sym_blotto_nudged_5k.png}
+  \caption{Nudging Symmetric Blotto to $NE_2$ using different starting regrets do not converge}
+  \label{fig:sym-nudge-plots}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{sym_blotto_nudged_100k.png}
+  \caption{Extreme Nudging of Symmetric Blotto to $NE_2$ using different starting regrets}
+  \label{fig:sym-nudge-extreme-plots}
+\end{figure}
+
+\subsection{Colonel Blotto}
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{blotto_100k_deltas.png}
+    \caption{Average Straegy Deltas}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{blotto_100k_regrets.png}
+    \caption{Average Total Positive Regrets}
+  \end{subfigure}
+
+  \caption{Deltas and Average Total Positive Regrets for Colonel Blotto 100k iterations}
+\end{figure}
+
+\subsubsection{Nudging towards predicted equilibria} \label{appendix:blotto-nudge-1}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{blotto_nudge_100k_1.png}
+    \caption{Towards Predicted Equilibrium 1}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{blotto_nudge_100k_2.png}
+    \caption{Towards Predicted Equilibrium 2}
+  \end{subfigure}
+
+  \caption{Nudging towards Colonel Blotto's Predicted Equilibria using starting conditions}
+\end{figure}
+
+\pagebreak
+\section{Code}
+
+All of the below code can also be found on \texttt{github.com/jackel119/regret\_matching}. Readers may prefer to go there for a superior code-viewing experience.
+
+\subsection{Games}
+\subsubsection{Colonel Blotto}
+\inputminted{python}{code/colonel_blotto.py}
+\subsubsection{Symmeteric Blotto}
+\inputminted{python}{code/symmetric_blotto.py}
+\subsubsection{Rock Paper Scissors}
+\inputminted{python}{code/rock_paper_scissors.py}
+
+\subsection{Players}
+\subsubsection{OneShotPlayer}
+\inputminted{python}{code/one_shot_player.py}
+\subsubsection{Regret Matching Player}
+\inputminted{python}{code/regret_minimization.py}
+\subsubsection{Fixed Strategy Player}
+\inputminted{python}{code/fixed.py}
+
+\subsection{Trainer}
+\inputminted{python}{code/one_shot_trainer.py}
+
+\subsection{Example of main program}
+\inputminted{python}{code/main.py}
 
 
 \end{document}

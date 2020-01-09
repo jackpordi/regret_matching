@@ -1,13 +1,97 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1}Introduction}{3}% 
+\contentsline {section}{\numberline {1}Introduction}{4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Colonel Blotto Game}{3}% 
+\contentsline {section}{\numberline {2}Colonel Blotto}{5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Symmetric Colonel Blotto}{3}% 
+\contentsline {subsection}{\numberline {2.1}The Colonel Blotto Game}{5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.1}Nash Equilibria}{4}% 
+\contentsline {subsection}{\numberline {2.2}Symmetric Colonel Blotto}{5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Implementation of Regret Minimalization Algorithm and Other Utilities}{5}% 
+\contentsline {subsubsection}{\numberline {2.2.1}Nash Equilibria}{6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Results of Algorithm}{5}% 
+\contentsline {section}{\numberline {3}Regret Minimalization}{8}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Motivation}{8}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2}Regret}{8}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3}Regret Matching}{8}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4}Minimal Regret Strategy is the average historical strategy}{9}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Implementation of Regret Minimalization Algorithm and Other Utilities}{10}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1}Differences to the original paper, design choices and extensibility}{10}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2}Game Class}{10}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3}Player Class}{10}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4}Trainer Class}{11}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.4.1}Graphs and Animations}{11}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5}Testing the Implementation with Rock Paper Scissors}{11}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.5.1}Finding best response against a fixed strategy}{11}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.5.2}Finding Nash Equilibrium via self-play}{12}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.5.3}Convergence of Strategies, Utilities}{13}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {4.5.3.1}Plotting Average Strategy Deltas between Intervals of Iterations}{13}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {4.5.3.2}Plotting Norm of Average Regret Vector}{14}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {4.5.3.3}Average Strategy Animations}{14}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Results of Algorithm}{15}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}Symmetric Blotto Game}{15}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.1}Two-Player Regret Matching towards specific Equilibria}{15}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.2}Evolutionary Stable Strategies of Symmetric Colonel Blotto}{15}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {5.1.2.1}2-Player Evolutionary Stable Strategies}{16}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {5.1.2.2}ESS of the Symmetric Blotto Game}{16}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}Original Colonel Blotto Game}{17}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.1}Nudging Colonel Blotto towards predicted Equilibria}{17}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.2}Asymmetric probabilities between symmetric actions}{17}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Arguments behind the Algorithm}{18}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Graphs and Plots}{19}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.1}Symmetric Blotto}{19}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.2}Colonel Blotto}{20}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {A.2.1}Nudging towards predicted equilibria}{21}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B}Code}{22}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.1}Games}{22}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {B.1.1}Colonel Blotto}{22}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {B.1.2}Symmeteric Blotto}{23}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {B.1.3}Rock Paper Scissors}{24}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.2}Players}{25}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {B.2.1}OneShotPlayer}{25}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {B.2.2}Regret Matching Player}{25}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {B.2.3}Fixed Strategy Player}{28}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.3}Trainer}{29}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.4}Example of main program}{34}% 

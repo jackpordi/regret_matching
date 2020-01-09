@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.11.15)  8 JAN 2020 21:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.11.15)  9 JAN 2020 20:59
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  %&-line parsing enabled.
 **report
 (./report.tex
@@ -496,14 +496,6 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/usr/share/texmf-dist/tex/latex/tools/bm.sty
-Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup6
-\symboldletters=\mathgroup7
-\symboldsymbols=\mathgroup8
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
-LaTeX Info: Redefining \bm on input line 209.
-)
 (/usr/share/texmf-dist/tex/latex/mnsymbol/MnSymbol.sty
 Package: MnSymbol 2007/01/21 v1.4 support for the MnSymbol font
 
@@ -685,10 +677,10 @@ LaTeX Info: Redefining \barwedge on input line 84.
 LaTeX Info: Redefining \doublebarwedge on input line 84.
 LaTeX Info: Redefining \centerdot on input line 84.
 LaTeX Info: Redefining \divideontimes on input line 84.
-\symMnSyA=\mathgroup9
-\symMnSyB=\mathgroup10
-\symMnSyC=\mathgroup11
-\symMnSyD=\mathgroup12
+\symMnSyA=\mathgroup6
+\symMnSyB=\mathgroup7
+\symMnSyC=\mathgroup8
+\symMnSyD=\mathgroup9
 LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 119.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/cmex/m/n --> OMX/MnSymbolE/m/n on input line 119.
@@ -1173,52 +1165,159 @@ Package: appendix 2009/09/02 v1.2b extra appendix facilities
 \c@@ppsavesec=\count335
 \c@@ppsaveapp=\count336
 )
+(/usr/share/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
+
+(/usr/share/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
+
+(/usr/share/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2019/10/22
+
+Style option: `fancyvrb' v3.3 <2019/10/22> (tvz)
+\FV@CodeLineNo=\count337
+\FV@InFile=\read3
+\FV@TabBox=\box66
+\c@FancyVerbLine=\count338
+\FV@StepNumber=\count339
+\FV@OutFile=\write5
+)
+(/usr/share/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+(/usr/share/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count340
+\output=\toks46
+\linenoprevgraf=\count341
+\linenumbersep=\dimen199
+\linenumberwidth=\dimen256
+\c@linenumber=\count342
+\c@pagewiselinenumber=\count343
+\c@LN@truepage=\count344
+\c@internallinenumber=\count345
+\c@internallinenumbers=\count346
+\quotelinenumbersep=\dimen257
+\bframerule=\dimen258
+\bframesep=\dimen259
+\bframebox=\box67
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count347
+\c@FV@TrueTabCounter=\count348
+\FV@TabBox@Group=\box68
+\FV@TmpLength=\skip79
+\c@FV@HighlightLinesStart=\count349
+\c@FV@HighlightLinesStop=\count350
+\FV@LoopCount=\count351
+\FV@NCharsBox=\box69
+\FV@BreakIndent=\dimen260
+\FV@BreakIndentNChars=\count352
+\FV@BreakSymbolSepLeft=\dimen261
+\FV@BreakSymbolSepLeftNChars=\count353
+\FV@BreakSymbolSepRight=\dimen262
+\FV@BreakSymbolSepRightNChars=\count354
+\FV@BreakSymbolIndentLeft=\dimen263
+\FV@BreakSymbolIndentLeftNChars=\count355
+\FV@BreakSymbolIndentRight=\dimen264
+\FV@BreakSymbolIndentRightNChars=\count356
+\c@FancyVerbLineBreakLast=\count357
+\FV@LineBox=\box70
+\FV@LineIndentBox=\box71
+\FV@LineWidth=\dimen265
+)
+(/usr/share/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2016/06/07 v0.02b unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 70.
+)
+(/usr/share/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/catchfile.sty
+Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
+)
+runsystem(uname -s > "report.w18")...executed.
+
+ (./report.w18)
+runsystem(rm -- "report.w18")...executed.
+
+)
+(/usr/share/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count358
+\decimalpart=\count359
+)
+Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+)
+(/usr/share/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip80
+\fb@frw=\dimen266
+\fb@frh=\dimen267
+\FrameRule=\dimen268
+\FrameSep=\dimen269
+)
+\minted@appexistsfile=\read4
+\minted@bgbox=\box72
+\minted@code=\write6
+\c@minted@FancyVerbLineTemp=\count360
+\c@minted@pygmentizecounter=\count361
+\@float@every@listing=\toks47
+\c@listing=\count362
+)
+runsystem(mkdir -p _minted-report)...executed.
+
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
 (/usr/share/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2019/08/31 v3.13a biblatex localization (PK/MW)
 )
-\@quotelevel=\count337
-\@quotereset=\count338
+\@quotelevel=\count363
+\@quotereset=\count364
+runsystem(which pygmentize && touch report.aex)...executed.
+
+runsystem(rm report.aex)...executed.
+
  (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 3
-6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
+8.
 
 (/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 36.
-\c@lstlisting=\count339
+LaTeX Font Info:    ... okay on input line 48.
+\c@lstlisting=\count365
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count340
-\scratchdimen=\dimen199
-\scratchbox=\box66
-\nofMPsegments=\count341
-\nofMParguments=\count342
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count343
-\MPscratchDim=\dimen256
-\MPnumerator=\count344
-\makeMPintoPDFobject=\count345
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count366
+\scratchdimen=\dimen270
+\scratchbox=\box73
+\nofMPsegments=\count367
+\nofMParguments=\count368
+\everyMPshowfont=\toks48
+\MPscratchCnt=\count369
+\MPscratchDim=\dimen271
+\MPnumerator=\count370
+\makeMPintoPDFobject=\count371
+\everyMPtoPDFconversion=\toks49
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1251,8 +1350,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'report.bbl' not found.
 
 No file report.bbl.
-Package biblatex Info: Reference section=0 on input line 36.
-Package biblatex Info: Reference segment=0 on input line 36.
+Package biblatex Info: Reference section=0 on input line 48.
+Package biblatex Info: Reference segment=0 on input line 48.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1290,72 +1389,222 @@ Package biblatex Info: Reference segment=0 on input line 36.
 ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./report.toc)
-\tf@toc=\write5
-\openout5 = `report.toc'.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./report.toc [2])
+\tf@toc=\write7
+\openout7 = `report.toc'.
 
- [2]
-
-LaTeX Warning: Reference `algo-theory' on page 3 undefined on input line 50.
-
-
-Overfull \hbox (0.1731pt too wide) in paragraph at lines 61--62
+ [3] [4]
+Overfull \hbox (0.1731pt too wide) in paragraph at lines 77--78
 []\OT1/cmr/m/n/10.95 The num-ber of pos-si-ble ac-tions for $\OML/cmm/m/it/10.9
 5 a$ \OT1/cmr/m/n/10.95 armies and $\OML/cmm/m/it/10.95 b$ \OT1/cmr/m/n/10.95 b
 at-tle-fields is $[]$,
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 115--116
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 
  []
 
-[4] [5] (./report.aux)
+[6] [7] [8] [9] [10]
+\openout5 = `report.pyg'.
+
+ (./_minted-report/default-pyg-prefix.pygstyle)
+(./_minted-report/default.pygstyle)
+(./_minted-report/44AE3BCE75E273ABCD67C642B480372C7C2E7F49E087B8E8E8DF5244CE287
+E39.pygtex)
+<./code/images/rps_fixed.png, id=58, 462.528pt x 346.896pt>
+File: ./code/images/rps_fixed.png Graphic file (type png)
+<use ./code/images/rps_fixed.png>
+Package pdftex.def Info: ./code/images/rps_fixed.png  used on input line 309.
+(pdftex.def)             Requested size: 252.94391pt x 189.70827pt.
+ [11]
+<./code/images/rps_nash_1k.png, id=63, 462.528pt x 346.896pt>
+File: ./code/images/rps_nash_1k.png Graphic file (type png)
+<use ./code/images/rps_nash_1k.png>
+Package pdftex.def Info: ./code/images/rps_nash_1k.png  used on input line 324.
+
+(pdftex.def)             Requested size: 162.6064pt x 121.95532pt.
+<./code/images/rps_nash_100k.png, id=64, 462.528pt x 346.896pt>
+File: ./code/images/rps_nash_100k.png Graphic file (type png)
+<use ./code/images/rps_nash_100k.png>
+Package pdftex.def Info: ./code/images/rps_nash_100k.png  used on input line 32
+9.
+(pdftex.def)             Requested size: 162.6064pt x 121.95532pt.
+\openout5 = `report.pyg'.
+
+
+(./_minted-report/30BC9AA73B57B142AD5463D879FF1B36D056FA939DEE1CFB528B6798A1EED
+084.pygtex [12 <./code/images/rps_fixed.png> <./code/images/rps_nash_1k.png> <.
+/code/images/rps_nash_100k.png>])
+<./code/images/rps_deltas_100k.png, id=71, 462.528pt x 346.896pt>
+File: ./code/images/rps_deltas_100k.png Graphic file (type png)
+<use ./code/images/rps_deltas_100k.png>
+Package pdftex.def Info: ./code/images/rps_deltas_100k.png  used on input line 
+370.
+(pdftex.def)             Requested size: 252.94391pt x 189.70827pt.
+ [13]
+<./code/images/rps_regrets_100k.png, id=76, 462.528pt x 346.896pt>
+File: ./code/images/rps_regrets_100k.png Graphic file (type png)
+<use ./code/images/rps_regrets_100k.png>
+Package pdftex.def Info: ./code/images/rps_regrets_100k.png  used on input line
+ 380.
+(pdftex.def)             Requested size: 252.94391pt x 189.70827pt.
+ [14 <./code/images/rps_deltas_100k.png> <./code/images/rps_regrets_100k.png>]
+
+LaTeX Warning: Reference `sym-nudge-plots' on page 15 undefined on input line 4
+00.
+
+
+Overfull \hbox (51.956pt too wide) in paragraph at lines 406--407
+[]\OT1/cmr/m/n/10.95 Do not con-verge but be-have er-rat-i-cal-ly/s-lows down/-
+cy-cles around $\OMX/MnSymbolE/m/n/10.95 à\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.
+95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OMX/MnSymbo
+lE/m/n/10.95 ~\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OM
+X/MnSymbolE/m/n/10.95 ~\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/1
+0.95 0\OMX/MnSymbolE/m/n/10.95 ç$ 
+ []
+
+[15] [16]
+<./code/images/blotto_10k.png, id=88, 596.9502pt x 417.7206pt>
+File: ./code/images/blotto_10k.png Graphic file (type png)
+<use ./code/images/blotto_10k.png>
+Package pdftex.def Info: ./code/images/blotto_10k.png  used on input line 529.
+(pdftex.def)             Requested size: 162.6064pt x 113.78676pt.
+<./code/images/blotto_100k.png, id=89, 462.528pt x 346.896pt>
+File: ./code/images/blotto_100k.png Graphic file (type png)
+<use ./code/images/blotto_100k.png>
+Package pdftex.def Info: ./code/images/blotto_100k.png  used on input line 534.
+
+(pdftex.def)             Requested size: 162.6064pt x 121.95532pt.
+ [17 <./code/images/blotto_10k.png> <./code/images/blotto_100k.png>]
+[18]
+<./code/images/sym_blotto_1k.png, id=98, 462.528pt x 346.896pt>
+File: ./code/images/sym_blotto_1k.png Graphic file (type png)
+<use ./code/images/sym_blotto_1k.png>
+Package pdftex.def Info: ./code/images/sym_blotto_1k.png  used on input line 56
+9.
+(pdftex.def)             Requested size: 252.94391pt x 189.70827pt.
+<./code/images/sym_blotto_nudged_5k.png, id=99, 462.528pt x 346.896pt>
+File: ./code/images/sym_blotto_nudged_5k.png Graphic file (type png)
+<use ./code/images/sym_blotto_nudged_5k.png>
+Package pdftex.def Info: ./code/images/sym_blotto_nudged_5k.png  used on input 
+line 576.
+(pdftex.def)             Requested size: 252.94391pt x 189.70827pt.
+<./code/images/sym_blotto_nudged_100k.png, id=100, 462.528pt x 346.896pt>
+File: ./code/images/sym_blotto_nudged_100k.png Graphic file (type png)
+<use ./code/images/sym_blotto_nudged_100k.png>
+Package pdftex.def Info: ./code/images/sym_blotto_nudged_100k.png  used on inpu
+t line 583.
+(pdftex.def)             Requested size: 252.94391pt x 189.70827pt.
+ [19 <./code/images/sym_blotto_1k.png> <./code/images/sym_blotto_nudged_5k.png>
+]
+<./code/images/blotto_100k_deltas.png, id=107, 462.528pt x 346.896pt>
+File: ./code/images/blotto_100k_deltas.png Graphic file (type png)
+<use ./code/images/blotto_100k_deltas.png>
+Package pdftex.def Info: ./code/images/blotto_100k_deltas.png  used on input li
+ne 595.
+(pdftex.def)             Requested size: 162.6064pt x 121.95532pt.
+<./code/images/blotto_100k_regrets.png, id=108, 462.528pt x 346.896pt>
+File: ./code/images/blotto_100k_regrets.png Graphic file (type png)
+<use ./code/images/blotto_100k_regrets.png>
+Package pdftex.def Info: ./code/images/blotto_100k_regrets.png  used on input l
+ine 600.
+(pdftex.def)             Requested size: 162.6064pt x 121.95532pt.
+<./code/images/blotto_nudge_100k_1.png, id=109, 462.528pt x 346.896pt>
+File: ./code/images/blotto_nudge_100k_1.png Graphic file (type png)
+<use ./code/images/blotto_nudge_100k_1.png>
+Package pdftex.def Info: ./code/images/blotto_nudge_100k_1.png  used on input l
+ine 613.
+(pdftex.def)             Requested size: 162.6064pt x 121.95532pt.
+<./code/images/blotto_nudge_100k_2.png, id=110, 462.528pt x 346.896pt>
+File: ./code/images/blotto_nudge_100k_2.png Graphic file (type png)
+<use ./code/images/blotto_nudge_100k_2.png>
+Package pdftex.def Info: ./code/images/blotto_nudge_100k_2.png  used on input l
+ine 618.
+(pdftex.def)             Requested size: 162.6064pt x 121.95532pt.
+ [20 <./code/images/sym_blotto_nudged_100k.png> <./code/images/blotto_100k_delt
+as.png> <./code/images/blotto_100k_regrets.png>] [21 <./code/images/blotto_nudg
+e_100k_1.png> <./code/images/blotto_nudge_100k_2.png>]
+Overfull \hbox (60.28333pt too wide) in paragraph at lines 628--629
+[]\OT1/cmr/m/n/10.95 All of the be-low code can also be found on \OT1/cmtt/m/n/
+10.95 github.com/jackel119/regret[]matching\OT1/cmr/m/n/10.95 .
+ []
+
+
+(./_minted-report/013247E9E36356B6E99AA1D8C1C551F839FCDC7BBCB656F09365C0CF3C41E
+F7F.pygtex
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2.
+ [22])
+(./_minted-report/3B796F606E64BA79C07EC6EA81298A48E06EF2B03331672E5E1EAA780CAC8
+137.pygtex [23])
+(./_minted-report/93627B28BFD238BC0E83052D078CA8274C95686D65D5BD3A671735E80C38D
+405.pygtex [24])
+(./_minted-report/9AAC1B569E1BD9D249F5B1618DDA2CA577A03EEDBEE1089542495E5055C9E
+189.pygtex)
+(./_minted-report/8EA28B43083CB10766ABC36CD645F78FE1CA20802C6524FA676522D9F7644
+A07.pygtex [25] [26] [27])
+(./_minted-report/41620CFC96DF79AE02AA502A7571C25D9ADA9ADA6F0C08C7EBD7805E81AFB
+DEC.pygtex [28])
+(./_minted-report/206522813CD03B23829062A22DE3B77ABA89F834368F6DC86F9BC5D95E777
+619.pygtex [29] [30] [31] [32] [33])
+(./_minted-report/4CAB8CDAC2D029700F9916FF968EEE069694523B6AC48A96DA4DC25C840D2
+E0B.pygtex) [34] (./report.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+runsystem(rm report.pyg)...executed.
 
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29398 strings out of 492167
- 558430 string characters out of 6131557
- 818408 words of memory out of 5000000
- 33276 multiletter control sequences out of 15000+600000
- 20958 words of font info for 74 fonts, out of 8000000 for 9000
+ 32211 strings out of 492167
+ 622866 string characters out of 6131557
+ 919594 words of memory out of 5000000
+ 35997 multiletter control sequences out of 15000+600000
+ 18998 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,15n,78p,860b,745s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolS.enc}{/usr/share/tex
-mf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/share/texmf-dist/fonts/enc
-/dvips/mnsymbol/MnSymbolD.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/M
-nSymbolE.enc}</usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb>
-</usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (5 pages, 165443 bytes).
+ 60i,20n,78p,860b,745s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/share/tex
+mf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc}{/usr/share/texmf-dist/fonts/enc
+/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbo
+l/MnSymbolC.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolS.enc}{
+/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}</usr/share/texmf-
+dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/mnsymbol/MnSymbol6.pfb></usr/share/texmf-dist/fonts/type1/public/mns
+ymbol/MnSymbol8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
+0.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
+fb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on report.pdf (34 pages, 622716 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 228 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 
